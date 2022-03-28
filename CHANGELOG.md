@@ -7,3 +7,7 @@
 ## 0.0.2
 
 * Added LICENSE to the flutter plugin
+
+## 0.0.3
+
+** Added index based tracking of menu selection
