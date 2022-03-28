@@ -5,13 +5,15 @@ class DynamicBottomDrawerWithIcon extends StatefulWidget {
   final Function(String, int) onTap;
   final Color selectedMenuColor;
   final Color unselectedMenuColor;
+  int initialSelectionIndex;
 
-  const DynamicBottomDrawerWithIcon(
+  DynamicBottomDrawerWithIcon(
       {Key? key,
       required this.dataListWithIcon,
       required this.onTap,
       required this.selectedMenuColor,
-      required this.unselectedMenuColor})
+      required this.unselectedMenuColor,
+      required this.initialSelectionIndex})
       : super(key: key);
 
   @override
@@ -21,8 +23,6 @@ class DynamicBottomDrawerWithIcon extends StatefulWidget {
 
 class DynamicBottomDrawerWithIconState
     extends State<DynamicBottomDrawerWithIcon> {
-  late int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -45,17 +45,17 @@ class DynamicBottomDrawerWithIconState
                     return GestureDetector(
                       onTap: () {
                         setState(() {
+                          widget.initialSelectionIndex = index;
                           widget.onTap(
                               widget.dataListWithIcon.keys.elementAt(index),
-                              index);
-                          selectedIndex = index;
+                              widget.initialSelectionIndex);
                         });
                       },
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border(
                             top: BorderSide(
-                              color: selectedIndex == index
+                              color: widget.initialSelectionIndex == index
                                   ? widget.selectedMenuColor
                                   : Colors.white,
                               width: 3.0,
@@ -74,7 +74,7 @@ class DynamicBottomDrawerWithIconState
                                     widget.dataListWithIcon.values
                                         .elementAt(index),
                                     size: 40,
-                                    color: selectedIndex == index
+                                    color: widget.initialSelectionIndex == index
                                         ? widget.selectedMenuColor
                                         : widget.unselectedMenuColor,
                                   ),
@@ -86,9 +86,10 @@ class DynamicBottomDrawerWithIconState
                                   widget.dataListWithIcon.keys.elementAt(index),
                                   style: TextStyle(
                                       fontSize: 10,
-                                      color: selectedIndex == index
-                                          ? widget.selectedMenuColor
-                                          : widget.unselectedMenuColor),
+                                      color:
+                                          widget.initialSelectionIndex == index
+                                              ? widget.selectedMenuColor
+                                              : widget.unselectedMenuColor),
                                 ),
                               ),
                               const SizedBox(

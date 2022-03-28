@@ -1,4 +1,4 @@
-name: dynamic_bottom_drawer
+name: dynamic_bottom_drawer_example
 description: This flutter plugin can be used to render the dynamic bottom drawer, where developer can pass the list of title and icons for the bottom drawer.
 version: 0.0.1
 homepage: https://github.com/satyambarsainya/dynamic_bottom_drawer

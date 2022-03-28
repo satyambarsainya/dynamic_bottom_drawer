@@ -5,13 +5,15 @@ class DynamicBottomDrawerWithoutIcon extends StatefulWidget {
   final Function(String, int) onTap;
   final Color selectedMenuColor;
   final Color unselectedMenuColor;
+  int initialSelectionIndex;
 
-  const DynamicBottomDrawerWithoutIcon(
+  DynamicBottomDrawerWithoutIcon(
       {Key? key,
       required this.dataListWithOutIcon,
       required this.onTap,
       required this.selectedMenuColor,
-      required this.unselectedMenuColor})
+      required this.unselectedMenuColor,
+      required this.initialSelectionIndex})
       : super(key: key);
 
   @override
@@ -21,8 +23,6 @@ class DynamicBottomDrawerWithoutIcon extends StatefulWidget {
 
 class DynamicBottomDrawerWithoutIconState
     extends State<DynamicBottomDrawerWithoutIcon> {
-  late int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -45,16 +45,16 @@ class DynamicBottomDrawerWithoutIconState
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          widget.onTap(
-                              widget.dataListWithOutIcon[index], index);
-                          selectedIndex = index;
+                          widget.initialSelectionIndex = index;
+                          widget.onTap(widget.dataListWithOutIcon[index],
+                              widget.initialSelectionIndex);
                         });
                       },
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border(
                             top: BorderSide(
-                              color: selectedIndex == index
+                              color: widget.initialSelectionIndex == index
                                   ? widget.selectedMenuColor
                                   : Colors.white,
                               width: 3.0,
@@ -73,9 +73,10 @@ class DynamicBottomDrawerWithoutIconState
                                   widget.dataListWithOutIcon[index],
                                   style: TextStyle(
                                       fontSize: 15,
-                                      color: selectedIndex == index
-                                          ? widget.selectedMenuColor
-                                          : widget.unselectedMenuColor),
+                                      color:
+                                          widget.initialSelectionIndex == index
+                                              ? widget.selectedMenuColor
+                                              : widget.unselectedMenuColor),
                                 ),
                               ),
                               const SizedBox(

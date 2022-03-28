@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     var dataListWithIcon = {
@@ -32,6 +33,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text("Dynamic Bottom Drawer"),
         ),
         // bottomNavigationBar: DynamicBottomDrawerWithoutIcon(
+        // initialSelectionIndex: selectedIndex,
         //     selectedMenuColor: Colors.tealAccent,
         //     unselectedMenuColor: Colors.black,
         //     dataListWithOutIcon: dataListWithOutList,
@@ -39,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         //       print(value);
         //     }),
         bottomNavigationBar: DynamicBottomDrawerWithIcon(
+            initialSelectionIndex: selectedIndex,
             dataListWithIcon: dataListWithIcon,
             unselectedMenuColor: Colors.black,
             selectedMenuColor: Colors.red,
