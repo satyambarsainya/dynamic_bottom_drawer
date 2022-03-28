@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       "Cart": Icons.car_rental
     };
 
-    var dataListWithOutList = ["Home", "Profile", "Logout"];
+    // var dataListWithOutList = ["Home", "Profile", "Logout"];
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
             unselectedMenuColor: Colors.black,
             selectedMenuColor: Colors.red,
             onTap: (String value, int index) {
-              print("${value} : ${index}");
+              // print("$value : $index");
             }),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
