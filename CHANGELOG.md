@@ -11,3 +11,7 @@
 ## 0.0.3
 
 ** Added index based tracking of menu selection
+
+## 0.0.4
+
+** Added a field to customize the background color for bottom drawer

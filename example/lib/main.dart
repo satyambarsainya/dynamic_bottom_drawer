@@ -41,6 +41,8 @@ class _MyAppState extends State<MyApp> {
         //       print(value);
         //     }),
         bottomNavigationBar: DynamicBottomDrawerWithIcon(
+            isSelectedBorderRequired: true,
+            backgroundColorForbottomDrawer: Colors.blueGrey,
             initialSelectionIndex: selectedIndex,
             dataListWithIcon: dataListWithIcon,
             unselectedMenuColor: Colors.black,

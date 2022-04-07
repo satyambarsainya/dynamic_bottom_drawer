@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+//ignore: must_be_immutable
 class DynamicBottomDrawerWithIcon extends StatefulWidget {
   final Map<String, IconData> dataListWithIcon;
   final Function(String, int) onTap;
   final Color selectedMenuColor;
   final Color unselectedMenuColor;
+  final Color backgroundColorForbottomDrawer;
+  final bool isSelectedBorderRequired;
   int initialSelectionIndex;
 
   DynamicBottomDrawerWithIcon(
@@ -13,7 +16,9 @@ class DynamicBottomDrawerWithIcon extends StatefulWidget {
       required this.onTap,
       required this.selectedMenuColor,
       required this.unselectedMenuColor,
-      required this.initialSelectionIndex})
+      required this.initialSelectionIndex,
+      required this.backgroundColorForbottomDrawer,
+      required this.isSelectedBorderRequired})
       : super(key: key);
 
   @override
@@ -30,8 +35,8 @@ class DynamicBottomDrawerWithIconState
         Container(
           height: 85,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-            color: Colors.white70,
+          decoration: BoxDecoration(
+            color: widget.backgroundColorForbottomDrawer,
           ),
           child: Center(
             child: SizedBox(
@@ -52,16 +57,18 @@ class DynamicBottomDrawerWithIconState
                         });
                       },
                       child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide(
-                              color: widget.initialSelectionIndex == index
-                                  ? widget.selectedMenuColor
-                                  : Colors.white,
-                              width: 3.0,
-                            ),
-                          ),
-                        ),
+                        decoration: widget.isSelectedBorderRequired
+                            ? BoxDecoration(
+                                border: Border(
+                                  top: BorderSide(
+                                    color: widget.initialSelectionIndex == index
+                                        ? widget.selectedMenuColor
+                                        : Colors.white,
+                                    width: 3.0,
+                                  ),
+                                ),
+                              )
+                            : const BoxDecoration(),
                         child: SizedBox(
                           width: 90,
                           child: Column(
